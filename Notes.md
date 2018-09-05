@@ -39,3 +39,4 @@
     -  
 - created the store and wrap the App component with Provider from react-redux to have the store available for all sub components, we pass the combined reducers to create store method
 
+- resourcers: https://redux.js.org/basics/exampletodolist
