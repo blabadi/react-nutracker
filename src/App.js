@@ -3,10 +3,11 @@ import logo from './logo.svg'
 import './App.css'
 import Dashboard from './containers/Dashboard'
 import { Provider } from 'react-redux'
-import {createStore} from 'redux'
-import nutracker from './reducers'
+import {createStore, applyMiddleware} from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import rootReducer from './reducers'
 
-const store = createStore(nutracker);
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 class App extends Component {
   render() {

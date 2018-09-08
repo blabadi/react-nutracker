@@ -1,7 +1,8 @@
 
 class FoodRepo {
-    findFood(name) {
-        return [
+    findFoodMock(name) {
+        if (name === '') return Promise.resolve([]); 
+        return Promise.resolve([
            {
                 id: 1,
                 name: 'eggs',
@@ -20,10 +21,15 @@ class FoodRepo {
                 fat: 10,
                 protein: 8 
             }
-        ];
+        ]);
+    }
+
+    findFood(name) {
+        return fetch(`/api/food/search?name=${name}`)
+            .then(response => response.json());
     }
 }
 
 let instance = new FoodRepo();
 
-export {instance};
+export default instance;

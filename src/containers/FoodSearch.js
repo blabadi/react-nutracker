@@ -1,16 +1,16 @@
 import SearchBox from '../presentational/search/SearchBox';
-import {searchFood} from '../actions'
+import * as searchFoodActions from '../actions/searchFoodActions'
 import {connect} from 'react-redux';
 
 const mapDispatchToProps = dispatch => ({
-    onTermChange: term => dispatch(searchFood(term))
+    onTermChange: term => dispatch(searchFoodActions.fetchFood(term))
 })
 
 const mapStateToProps = (state) => {
     return {
         placeholderText: "Search for food",
         title: "Add New Entry",
-        results: state.searchFoodResult 
+        results: state.searchFoodResult.results 
     }
 }
 

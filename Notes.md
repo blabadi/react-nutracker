@@ -25,6 +25,21 @@
 
 # Day 2
 ## Adding Redux
+one way or another redux is an implementation to observer design pattern (aka publish/subscriber) mainly for react apps (still can be used with anything).
+- Definitions:
+    - action: an event in the application
+        - at least is has string type property
+        - can have any other arbitrary data.
+        - can be "dispatched" by components on demand
+    - reducers: action handler to update state
+        - pure functions (no db calls, no external calls just objects read write).
+        - takes input state +  action 
+        - outputs new object (new part of the state)
+    - store:
+        - references the whole state
+        - dispatches actions
+        - invokes reducers (subscribers) each with the part of the state they define 
+    
 - installed redux, redux-react `npm install --save redux redux-react`
 - renamed the components folder to presentational
     - this holds reusable components that don't interact with the external world
@@ -40,3 +55,38 @@
 - created the store and wrap the App component with Provider from react-redux to have the store available for all sub components, we pass the combined reducers to create store method
 
 - resourcers: https://redux.js.org/basics/exampletodolist
+
+# Day3
+## Async api call 
+- by default the store is for sync dispatched actions, i.e. it won't support async calls out of the box.
+- after some reading, the simplest approach would be to:
+    - dispatch an action to do the call, that action would initiate an async call. 
+    - when the response is received it will dispatch an action with the result received (either success / failure).
+- so I already have SEARCH_FOOD action which will be used to send the ajax call (to be done), I created an action for receving the results RECEIVE_SEARCH_FOOD_RESULTS.
+
+- I modifed my reducers as well:
+    - if the action is SEARCH_FOOD it will set a flag that we are fetching data
+    - if the action is RECEIVE_SEARCH_FOOD_RESULTS, we will handle the results for that term, and update the state with the results array and unset the fetching flag.
+- the Async call action:
+    - in FoodSearch.js we dispatched (mapDispatchToProperties) the searchFood action creator result (what builds SEARCH_FOOD action payload )
+    - install corss-fetch `npm install --save cross-fetch` to use the fetch API and get promises for our async calls.
+    - the dispatch(searchFood(term)) will change:
+        - add a new action (fetchFood) :
+            - this action takes a food search term
+            - returns a function that takes dispatch as param (to use it)(store doesn't understand function actions by default we will see how to make it work)
+            you will get this error: 
+            ```Error: Actions must be plain objects. Use custom middleware for async actions.```
+            - that function will call foodRepo which will do the network API call for us, currently it only return mock data  wrapped with Promise to fit the convention that all api calls to return promises to handle consistently in the action. 
+        - the searchFood action will remain as is but now it indicates more the start of the async request. 
+        - in mapDispatchToProperties we will dispatch(fetchFood) instead of searchFood.
+    - now we will get the error above because our store can't handle function actions, so we will install `redux-thunk` 
+        - this package is a redux middleware (i.e. it does some processing for redux actions intermediatly, and passes the result back to redux).
+        - run `npm install --save redux-thunk`
+        - modify our store creation logic: <br>
+        ```const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));```
+    - now we can see the app working correctly and shows the stub data 
+    - now let's do a real network call:
+        - renamed the mock method in foodRepo to findFoodMock(), and created new one for the real call which does a fetch call to our api and parse the json body.
+        - run the nutracker-apis 
+        - I added this in the package.json: `proxy": "http://localhost:8080` to avoid Cross origin errors so react will proxy requests to this server through the development server.
+        - running the code will show results from server.

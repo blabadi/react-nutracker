@@ -1,18 +1,25 @@
-import {SEARCH_FOOD} from "../actions";
-import {instance as foodRepo} from '../repos/FoodRepo';
+import {SEARCH_FOOD, RECEIVE_SEARCH_FOOD_RESULTS} from "../actions/searchFoodActions";
 
-const searchFoodResult = (state = [], action) => {
+const searchFoodResult = (state = { isFetching: false, term: '', results: [] }, action) => {
     switch (action.type) {
         case SEARCH_FOOD:
-            return handleSearch(action.term);
+            
+            return Object.assign({}, state, { 
+                isFetching: true,
+                term: action.term
+            }); 
+        case RECEIVE_SEARCH_FOOD_RESULTS:
+            return Object.assign({}, state, { 
+                isFetching: false,
+                term: action.term,
+                results: handleSearchFoodResults(action.results)
+            }); 
         default:
             return state
     } 
 };
 
-const handleSearch = (term) => {
-    console.log(`in handleSearch ${term}`);
-    const results = foodRepo.findFood(term);
+const handleSearchFoodResults = (results) => {
     const searchResults = results.map(food =>  {
             return { 
                 key: food.id, 
@@ -20,6 +27,6 @@ const handleSearch = (term) => {
             }
         });
     return searchResults
-}  
+}
 
 export default searchFoodResult;
