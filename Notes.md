@@ -90,3 +90,5 @@ one way or another redux is an implementation to observer design pattern (aka pu
         - run the nutracker-apis 
         - I added this in the package.json: `proxy": "http://localhost:8080` to avoid Cross origin errors so react will proxy requests to this server through the development server.
         - running the code will show results from server.
+        
+- resources: https://redux.js.org/advanced/asyncactions
