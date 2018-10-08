@@ -95,4 +95,11 @@ one way or another redux is an implementation to observer design pattern (aka pu
 
 
 # Day 4
-## 
+
+1- add dashboard actions to load initial data (user profile)
+2- create progress bar gauge
+3- create metrics container with static data
+4- try css grid to make metrics boxes responsive 
+5- add request builder to centralize request exit point
+6- add user repo (not working yet)
+
