@@ -92,3 +92,7 @@ one way or another redux is an implementation to observer design pattern (aka pu
         - running the code will show results from server.
         
 - resources: https://redux.js.org/advanced/asyncactions
+
+
+# Day 4
+## 

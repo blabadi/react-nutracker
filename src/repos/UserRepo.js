@@ -1,11 +1,11 @@
 import requestBuilder from "./RequestBuilder";
-class FoodRepo {
-    findFood(name) {
+class UserRepo {
+    findUser(id) {
         return requestBuilder.execute({
-            url : `/api/food/search?name=${name}`
+            url : `/api/users/${id}`
         });
     }
 }
 
-let instance = new FoodRepo();
+let instance = new UserRepo();
 export default instance;
