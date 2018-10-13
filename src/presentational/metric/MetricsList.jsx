@@ -8,7 +8,7 @@ export default class MetricList extends Component {
         {
             this.props.metrics.map(m => {
                 return (
-                    <div className="metric-item">
+                    <div key={m.name} className="metric-item">
                         <MetricBox label={m.name} target={m.target} current={m.current} />
                     </div>
                 )

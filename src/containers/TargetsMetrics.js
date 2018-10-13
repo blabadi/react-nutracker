@@ -1,17 +1,37 @@
-import {connect} from 'react-redux';
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import MetricsList from '../presentational/metric/MetricsList'
+import {calculateMetrics} from '../actions/metricsActions'
 
-const mapStateToProps = (state) => {
-    return {
-        metrics: [
-            {name: 'calories', target: 1800, current: 907},
-            {name: 'protein', target: 140, current: 48},
-            {name: 'fats', target: 60, current: 23},
-            {name: 'carbs', target: 230, current: 112}
-        ]
+class TargetsMetrics extends Component {
+    componentDidMount() {
+        this.props.calculateMetrics();
+    }
+
+    render() {
+        return (<MetricsList metrics={this.props.metrics} />);
     }
 }
 
+const mapStateToProps = (state) => {
+    if (state.user.profile) {
+        //TODO: use entries to calculate progress
+        return {
+            metrics: [
+                {name: 'calories', target: state.user.profile.targets.calories, current: 907},
+                {name: 'proteins', target: state.user.profile.targets.protein, current: 48},
+                {name: 'fats', target: state.user.profile.targets.fats, current: 23},
+                {name: 'carbs', target: state.user.profile.targets.carbs, current: 112}
+            ]
+        }
+    } else {
+        return { metrics: [] };
+    }
+}
+const mapDispatchToProps = (dispatch) => ({
+    calculateMetrics
+})
+
 export default connect(
-    mapStateToProps
-)(MetricsList)
+    mapStateToProps, mapDispatchToProps
+)(TargetsMetrics)

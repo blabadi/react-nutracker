@@ -4,7 +4,7 @@ export const RECEIVE_SEARCH_FOOD_RESULTS = 'RECEIVE_SEARCH_FOOD_RESULTS'
 
 
 export const fetchFood = (term) => (dispatch) => {
-    dispatch(searchFood); 
+    dispatch(searchFood(term)); 
     return foodRepo.findFood(term)
         .then(foods => { 
                 dispatch(receiveSearchFoodResults(term, foods))

@@ -4,7 +4,7 @@ class RequestBuilder {
         const {url} = reqInfo;
         return fetch(url, {
             headers: {
-                'Authorization': 'Basic YmFzaGFyOnBhc3N3b3Jk'
+                'Authorization': 'Basic YmFzaGFyOmJhc2hhcg=='
             }
         }).then(response => response.json()); 
     }

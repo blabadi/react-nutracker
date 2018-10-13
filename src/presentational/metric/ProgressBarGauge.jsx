@@ -10,8 +10,8 @@ export default class ProgressBarGauge extends Component {
         const percentage = this.calculateProgressPercentage();
         return(
             <div>
-                <div class="progress">
-                    <div class="progress-bar"
+                <div className="progress">
+                    <div className="progress-bar"
                         role="progressbar"
                         aria-valuenow={percentage}
                         aria-valuemin="0" 

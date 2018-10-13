@@ -1,11 +1,11 @@
 import requestBuilder from "./RequestBuilder";
-class UserRepo {
-    findUser(id) {
+class EntryRepo {
+    find(start, end) {
         return requestBuilder.execute({
-            url : `/api/user/${id}`
+            url : `/api/entry/from/${start}/to/${end}`
         });
     }
 }
 
-let instance = new UserRepo();
+let instance = new EntryRepo();
 export default instance;

@@ -3,7 +3,9 @@ import * as searchFoodActions from '../actions/searchFoodActions'
 import {connect} from 'react-redux';
 
 const mapDispatchToProps = dispatch => ({
-    onTermChange: term => dispatch(searchFoodActions.fetchFood(term))
+    onTermChange: term => {
+        return dispatch(searchFoodActions.fetchFood(term))
+    }
 })
 
 const mapStateToProps = (state) => {

@@ -2,18 +2,40 @@ import React, {Component} from 'react';
 import FoodSearch from './FoodSearch';
 import TargetsMetrics from './TargetsMetrics'
 import { connect } from 'react-redux';
-import {loadDashboard} from '../actions/dashboardActions';
+import { loadUser} from '../actions/userActions';
+import {fetchEntries} from '../actions/entriesActions'
+import Entry from '../presentational/entry/Entry';
+import DayEntries from './DayEntries';
+import DateNavigator from '../presentational/date-nav/DateNavigator';
 
 class Dashboard extends Component {
     componentDidMount() {
-        this.props.loadDashboard();
+        this.loadDashboard();
     }
+
+    loadDashboard() {
+        Promise.all([
+            this.props.loadUser()
+        ]).catch(err=> console.log(err));
+    }
+
     render() {
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <FoodSearch></FoodSearch>
-                    <TargetsMetrics/>
+                    <div className="mb-4">
+                        Hello, {this.props.user.name}
+                    </div>
+                    <div className="mb-4">
+                        <FoodSearch></FoodSearch>
+                    </div>
+                    <div className="mb-4">
+                        <TargetsMetrics/>
+                    </div>
+                    <div className="mb-3">
+                        <DateNavigator date="Today"/>
+                    </div>
+                    <DayEntries/>
                 </div>
             </div>
         );
@@ -21,14 +43,12 @@ class Dashboard extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    loadDashboard
+    loadUser: name => dispatch(loadUser('bashar'))
 })
 
-//TODO create reducers
 const mapStateToProps = (state) => {
     return {
-        profile: state.profile || {},
-        entries: state.entries || []
+        user: state.user
     }
 }
 

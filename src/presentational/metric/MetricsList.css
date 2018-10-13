@@ -2,7 +2,7 @@
 .metrics-list-container {
     width: 100%;
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 20px;
     justify-content: mormal;
     /*auto divide the space to 4 columns each is min 250px*/
     /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Realizing_common_layouts_using_CSS_Grid_Layout */
