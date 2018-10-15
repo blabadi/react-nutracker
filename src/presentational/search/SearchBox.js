@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-
+import './Search.css';
 class SearchBox extends Component {
     state = {
         term: ''
@@ -13,6 +13,20 @@ class SearchBox extends Component {
         this.props.onTermChange(value);
     }
 
+    renderResults() {
+        if (this.props.results.length > 0) {
+            return (
+            <div className="search-result-list">
+                {
+                    this.props.results.map(r => {
+                        return <div key={r.key} className="search-result">{r.text}</div>
+                    })
+                }
+            </div>
+            );
+        }
+    }
+    
     render() {
         return (
             <div className="card">
@@ -25,13 +39,7 @@ class SearchBox extends Component {
                             value={this.state.term}
                             onChange={this.onTermChange} />
                     </div>
-                    <div className="search-results">
-                    {
-                        this.props.results.map(r => {
-                            return <div key={r.key} className="result-row">{r.text}</div>
-                        })
-                    }
-                    </div>
+                    {this.renderResults()}
                 </div>
             </div>
         );

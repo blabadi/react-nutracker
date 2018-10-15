@@ -1,10 +1,20 @@
-
-.metrics-list-container {
+.metrics-list-container{
+    grid-template-columns: 1fr;  
     width: 100%;
     display: grid;
     grid-gap: 20px;
-    justify-content: mormal;
-    /*auto divide the space to 4 columns each is min 250px*/
+}
+
+@media(min-width: 500px){
+.metrics-list-container {
+    /*auto divide the space to 2 columns each is min 110px*/
     /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Realizing_common_layouts_using_CSS_Grid_Layout */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: minmax(110px, 1fr) minmax(110px, 1fr);
+ }
+}
+
+@media(min-width: 800px){ 
+    .metrics-list-container{
+        grid-template-columns: 1fr 1fr 1fr 1fr;  
+    }
 }

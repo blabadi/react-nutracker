@@ -3,10 +3,8 @@ import FoodSearch from './FoodSearch';
 import TargetsMetrics from './TargetsMetrics'
 import { connect } from 'react-redux';
 import { loadUser} from '../actions/userActions';
-import {fetchEntries} from '../actions/entriesActions'
-import Entry from '../presentational/entry/Entry';
 import DayEntries from './DayEntries';
-import DateNavigator from '../presentational/date-nav/DateNavigator';
+import EntriesDateNavigator from './EntriesDateNavigator';
 
 class Dashboard extends Component {
     componentDidMount() {
@@ -15,7 +13,7 @@ class Dashboard extends Component {
 
     loadDashboard() {
         Promise.all([
-            this.props.loadUser()
+            this.props.loadUser('bashar')
         ]).catch(err=> console.log(err));
     }
 
@@ -33,7 +31,7 @@ class Dashboard extends Component {
                         <TargetsMetrics/>
                     </div>
                     <div className="mb-3">
-                        <DateNavigator date="Today"/>
+                        <EntriesDateNavigator/>
                     </div>
                     <DayEntries/>
                 </div>
@@ -43,7 +41,7 @@ class Dashboard extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    loadUser: name => dispatch(loadUser('bashar'))
+    loadUser: name => dispatch(loadUser(name))
 })
 
 const mapStateToProps = (state) => {
