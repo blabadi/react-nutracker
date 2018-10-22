@@ -17,7 +17,7 @@ export default class DateNavigator extends Component {
     render() {
         return (   
             <div className="date-nav-container">
-                <div class="controls-container">
+                <div className="controls-container">
                     <button type="button" className="btn btn-link float-left date-control-btn-back" onClick={() => this.onDateChange(-1)}>
                     <span className="date-control fa fa-arrow-circle-o-left">&lt;</span>
                     </button>

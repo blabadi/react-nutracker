@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
     loadUser: name => dispatch(loadUser(name))
 })
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
         user: state.user
     }
