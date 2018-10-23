@@ -22,9 +22,6 @@ class Dashboard extends Component {
             <div className="row">
                 <div className="col-md-12">
                     <div className="mb-4">
-                        Hello, {this.props.user.name}
-                    </div>
-                    <div className="mb-4">
                         <FoodSearch></FoodSearch>
                     </div>
                     <div className="mb-4">
@@ -44,7 +41,7 @@ const mapDispatchToProps = dispatch => ({
     loadUser: name => dispatch(loadUser(name))
 })
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         user: state.user
     }

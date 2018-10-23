@@ -113,20 +113,19 @@ Problem:  Reading router params in component (ex: if i want the current date to 
  - react router suggest not to synchronize state with routes see readings [1]
  - to go around it they suggest to pass router params as filter and read them in `mapStateToProps(state, props => { match: { params }})`
     - components rendered by `<Route component={}>` get match in props by defualt
-    - others need to use this: `withRouter(connect(mapState,mapDispatch)(LComp))`
+    - others need to use this: `withRouter(connect(mapState,mapDispatch)(LComp))`. this is also needed if our component doesn't get rerendered on route changes. (faced this
+    issue in the Nav component).
 - This means that we have two sources of truth router & redux store, which can become messy to wrap our head around in big applications since we won't quickly know if the component gets everything from redux store or it could get stuff from router in its own properties.
 - the above also means that anything changing the route (changes filters) shouldn't be an action but a `<Link />` instead.
 
 for now I want to keep this simple so I'll use the router without params (no specific url per date)
 
-
-
+NavLink in router already provider accessiable links with active class property to style
 readings:
 <ol>
     <li>https://reacttraining.com/react-router/web/guides/redux-integration</li>
     <li>https://redux.js.org/advanced/usagewithreactrouter</li>
 </ol>
-
 
 
 

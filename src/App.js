@@ -8,7 +8,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
   Redirect 
 } from 'react-router-dom'
 import logo from './logo.svg'
@@ -17,6 +16,7 @@ import Dashboard from './containers/Dashboard'
 import {Login} from './containers/Login'
 import Profile from './containers/Profile';
 import { AuthStore } from './repos/UserRepo';
+import Nav  from './containers/Nav';
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
@@ -51,19 +51,7 @@ class App extends Component {
         );
   }
 
-  renderNav(){
-    console.log("in nav");
-    if (AuthStore.isAuthenticated) {
-      return (<ul>
-        <li>
-          <Link to="/dashboard">Public Page</Link>
-        </li>
-        <li>
-          <Link to="/profile">Protected Page</Link>
-        </li>
-      </ul>)
-    }
-  }
+  
   render() {
     console.log('in render app');
     return (
@@ -74,7 +62,7 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <h1 className="App-title">Welcome to NuTracker</h1>
             </header>
-            {this.renderNav()}
+            <Nav/>
             {this.routerOutput()}
           </div>
         </Router>
