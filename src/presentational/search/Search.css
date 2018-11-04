@@ -12,7 +12,6 @@
   
   .search-result-list{
     position: relative;
-    z-index: 9999;
     background-color:white;
     border: 1px solid #c8c8c8;
     border-bottom-left-radius: 10px;
@@ -21,6 +20,14 @@
     overflow-y: auto;
   }
   
+  @media(min-width: 800px) {
+    .search-result-list{
+      position: absolute;
+      width: 50%;
+      z-index: 9999;
+    }
+  }
+
   .search-result:hover {
     color: #f8f8f8;
     background-color: #337ab7;

@@ -96,10 +96,45 @@ one way or another redux is an implementation to observer design pattern (aka pu
 
 # Day 4
 
-1- add dashboard actions to load initial data (user profile)
-2- create progress bar gauge
-3- create metrics container with static data
-4- try css grid to make metrics boxes responsive 
-5- add request builder to centralize request exit point
-6- add user repo (not working yet)
+Day 4 included working on many components to finish the read part of the dashboard and components interactions 
+see this PR for all the changes with comments explaining.
 
+https://github.com/blabadi/react-nutracker/pull/2
+
+blog:http://dev.basharallabadi.com/2018/10/part-4-nutracker-reactjs-application.html
+
+# Day 5
+
+React Router
+In this day I want to:
+- add react router and profile page
+
+Problem:  Reading router params in component (ex: if i want the current date to show in url `/dashboard/:date` to bookmark it)
+
+ - currently the period (date filter) is stored in the state and changed by actions (when user moves forward/backward)
+ - react router suggest not to synchronize state with routes see readings [1]
+ - to go around it they suggest to pass router params as filter and read them in `mapStateToProps(state, props => { match: { params }})`
+    - components rendered by `<Route component={}>` get match in props by defualt
+    - others need to use this: `withRouter(connect(mapState,mapDispatch)(LComp))`. this is also needed if our component doesn't get rerendered on route changes. (faced this
+    issue in the Nav component).
+- This means that we have two sources of truth router & redux store, which can become messy to wrap our head around in big applications since we won't quickly know if the component gets everything from redux store or it could get stuff from router in its own properties.
+- the above also means that anything changing the route (changes filters) shouldn't be an action but a `<Link />` instead.
+
+for now I want to keep this simple so I'll use the router without params (no specific url per date)
+
+NavLink in router already provider accessiable links with active class property to style
+readings:
+<ol>
+    <li>https://reacttraining.com/react-router/web/guides/redux-integration</li>
+    <li>https://redux.js.org/advanced/usagewithreactrouter</li>
+</ol>
+
+# Day 6 
+PropTypes & Unit testing
+
+
+
+# Things to check later:
+- https://redux.js.org/recipes/serverrendering
+- https://redux.js.org/recipes/implementingundohistory
+- reach hooks !

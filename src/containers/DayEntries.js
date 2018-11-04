@@ -3,7 +3,6 @@ import Entry from '../presentational/entry/Entry';
 import {connect} from 'react-redux';
 import React, {Component} from 'react'
 import Util from '../Util';
-
 class DayEntries extends Component {
     componentDidMount() {
         this.props.fetchEntries(Util.dateToDatestamp(this.props.from), Util.dateToDatestamp(this.props.to));
@@ -42,7 +41,7 @@ const mapDispatchToProps = dispatch => ({
     fetchEntries: (s, e) => dispatch(fetchEntries(s, e))
 })
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
     return {
         entries: state.entries,
         from: state.period.from,
@@ -53,4 +52,4 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(DayEntries)
+)(DayEntries);
