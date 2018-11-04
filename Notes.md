@@ -101,11 +101,13 @@ see this PR for all the changes with comments explaining.
 
 https://github.com/blabadi/react-nutracker/pull/2
 
+blog:http://dev.basharallabadi.com/2018/10/part-4-nutracker-reactjs-application.html
+
 # Day 5
 
+React Router
 In this day I want to:
 - add react router and profile page
-- add propTypes
 
 Problem:  Reading router params in component (ex: if i want the current date to show in url `/dashboard/:date` to bookmark it)
 
@@ -127,9 +129,12 @@ readings:
     <li>https://redux.js.org/advanced/usagewithreactrouter</li>
 </ol>
 
+# Day 6 
+PropTypes & Unit testing
 
 
 
 # Things to check later:
 - https://redux.js.org/recipes/serverrendering
 - https://redux.js.org/recipes/implementingundohistory
+- reach hooks !

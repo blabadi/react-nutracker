@@ -35,6 +35,7 @@ const mapStateToProps = (state) => ({
     username : state.user.name
 });
 
-//had to add with router here because this component will not be rerndered since it's not
+//had to add with router here because this component will not be rerendered since it's not
 //a router component and no props change happen currently since user is loaded in dashboard
+//if we remove this the routing will work but the navigation links won't reflect the current active link
 export default withRouter(connect(mapStateToProps, {})(Nav));
