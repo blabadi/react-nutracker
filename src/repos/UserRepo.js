@@ -10,7 +10,7 @@ export const AuthStore = {
       this.isAuthenticated = false;
       setTimeout(cb, 100);
     }
-  };
+};
 
 class UserRepo {
     findUser(id) {
