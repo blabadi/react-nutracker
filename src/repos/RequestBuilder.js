@@ -1,12 +1,16 @@
 
 class RequestBuilder {
     execute(reqInfo) {
-        const {url} = reqInfo;
-        return fetch(url, {
+        const { url, options } = reqInfo;
+        const fetchOptions = {
             headers: {
-                'Authorization': 'Basic YmFzaGFyOmJhc2hhcg=='
-            }
-        }).then(response => response.json()); 
+                'Authorization': 'Basic YmFzaGFyOmJhc2hhcg==',
+                'Content-Type': 'application/json'
+            },
+            ...options
+        };
+        
+        return fetch(url, fetchOptions).then(response => response.json()); 
     }
 }
 

@@ -10,10 +10,10 @@ export default class Entry extends Component {
                 <h4 className="card-title">{entry.food.name}</h4>
                 <div className="card-subtitle mb-2 text-muted">{entry.amount} serving<small>(s)</small>, {entry.food.unit} each</div>
                     <p className="card-text">
-                        <span className="badge badge-info"><span className="badge badge-light mr-1">{round(entry.food.calories * entry.amount)}</span> Calories</span>
+                        <span className="badge badge-info"><span className="badge badge-light mr-1">{round(entry.food.calories * entry.amount)}</span>Calories</span>
                         <span className="badge badge-success"><span className="badge badge-light mr-1">{round(entry.food.carbs * entry.amount)}</span>Carbs</span>
-                        <span className="badge badge-warning "><span className="badge badge-light  mr-1">{round(entry.food.fat * entry.amount)}</span> Fats</span>
-                        <span className="badge badge-danger"><span className="badge badge-light mr-1">{round(entry.food.protein * entry.amount)}</span> Protein</span>
+                        <span className="badge badge-warning "><span className="badge badge-light  mr-1">{round(entry.food.fat * entry.amount)}</span>Fats</span>
+                        <span className="badge badge-danger"><span className="badge badge-light mr-1">{round(entry.food.protein * entry.amount)}</span>Protein</span>
                     </p>
                     <p className="card-text">
                         <small className="text-muted">{Util.formatDateTime(entry.createdAt)}</small>

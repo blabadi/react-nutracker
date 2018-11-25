@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import FoodSearch from './FoodSearch';
 import TargetsMetrics from './TargetsMetrics'
 import { connect } from 'react-redux';
 import { loadUser} from '../actions/userActions';
 import DayEntries from './DayEntries';
 import EntriesDateNavigator from './EntriesDateNavigator';
+import EntryCreation from './EntryCreation';
 
 class Dashboard extends Component {
     componentDidMount() {
@@ -22,7 +22,7 @@ class Dashboard extends Component {
             <div className="row">
                 <div className="col-md-12">
                     <div className="mb-4">
-                        <FoodSearch></FoodSearch>
+                        <EntryCreation></EntryCreation>
                     </div>
                     <div className="mb-4">
                         <TargetsMetrics/>

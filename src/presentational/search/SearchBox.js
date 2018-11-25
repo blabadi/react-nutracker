@@ -1,6 +1,6 @@
-
 import React, { Component } from 'react';
 import './Search.css';
+
 class SearchBox extends Component {
     state = {
         term: ''
@@ -13,13 +13,19 @@ class SearchBox extends Component {
         this.props.onTermChange(value);
     }
 
+    onResultClick = (e, result) => {
+        e.preventDefault();
+        this.setState({term: ''});
+        this.props.onResultClick(result);
+    }
+    
     renderResults() {
         if (this.props.results.length > 0) {
             return (
             <div className="search-result-list">
                 {
                     this.props.results.map(r => {
-                        return <div key={r.key} className="search-result">{r.text}</div>
+                        return <div key={r.key} className="search-result" onClick={ (e) => { this.onResultClick(e, r)} }>{r.text}</div>
                     })
                 }
             </div>
